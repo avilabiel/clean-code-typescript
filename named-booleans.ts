@@ -1,36 +1,36 @@
 // TIC TAC TOE example
 // BAD
 if (
-  user.movements.some((movement) => [1, 4, 7].includes(movement)) ||
-  user.movements.some((movement) => [2, 5, 8].includes(movement)) ||
-  user.movements.some((movement) => [3, 6, 9].includes(movement)) ||
-  user.movements.some((movement) => [1, 2, 3].includes(movement)) ||
-  user.movements.some((movement) => [4, 5, 6].includes(movement)) ||
-  user.movements.some((movement) => [7, 8, 9].includes(movement)) ||
-  user.movements.some((movement) => [1, 5, 9].includes(movement)) ||
-  user.movements.some((movement) => [3, 5, 7].includes(movement))
+  [1, 4, 7].every((movement) => player.movements.includes(movement)) ||
+  [2, 5, 8].every((movement) => player.movements.includes(movement)) ||
+  [3, 6, 9].every((movement) => player.movements.includes(movement)) ||
+  [1, 2, 3].every((movement) => player.movements.includes(movement)) ||
+  [4, 5, 6].every((movement) => player.movements.includes(movement)) ||
+  [7, 8, 9].every((movement) => player.movements.includes(movement)) ||
+  [1, 5, 9].every((movement) => player.movements.includes(movement)) ||
+  [3, 5, 7].every((movement) => player.movements.includes(movement))
 ) {
-  return res.send({ message: "User won" });
+  return res.send({ message: "Player won" });
 }
 
 // GOOD
-const didUserWinVertical =
-  user.movements.some((movement) => [1, 4, 7].includes(movement)) ||
-  user.movements.some((movement) => [2, 5, 8].includes(movement)) ||
-  user.movements.some((movement) => [3, 6, 9].includes(movement));
+const didPlayerWinVertical =
+  [1, 4, 7].every((movement) => player.movements.includes(movement)) ||
+  [2, 5, 8].every((movement) => player.movements.includes(movement)) ||
+  [3, 6, 9].every((movement) => player.movements.includes(movement));
 
-const didUserWinHorizontal =
-  user.movements.some((movement) => [1, 2, 3].includes(movement)) ||
-  user.movements.some((movement) => [4, 5, 6].includes(movement)) ||
-  user.movements.some((movement) => [7, 8, 9].includes(movement));
+const didPlayerWinHorizontal =
+  [1, 2, 3].every((movement) => player.movements.includes(movement)) ||
+  [4, 5, 6].every((movement) => player.movements.includes(movement)) ||
+  [7, 8, 9].every((movement) => player.movements.includes(movement));
 
-const didUserWinDiagonal =
-  user.movements.some((movement) => [1, 5, 9].includes(movement)) ||
-  user.movements.some((movement) => [3, 5, 7].includes(movement));
+const didPlayerWinDiagonal =
+  [1, 5, 9].every((movement) => player.movements.includes(movement)) ||
+  [3, 5, 7].every((movement) => player.movements.includes(movement));
 
-const didUserWin =
-  didUserWinVertical || didUserWinHorizontal || didUserWinDiagonal;
+const didPlayerWin =
+  didPlayerWinVertical || didPlayerWinHorizontal || didPlayerWinDiagonal;
 
-if (didUserWin) {
-  return res.send({ message: "User won" });
+if (didPlayerWin) {
+  return res.send({ message: "Player won" });
 }
