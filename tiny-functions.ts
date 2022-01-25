@@ -17,8 +17,8 @@ async function createPixTransfer(sender: User, receiver: User, amount: number) {
 // GOOD
 async function createPixTransfer(sender: User, receiver: User, amount: number) {
   await chargeAmountFromSender(sender, amount);
-
   await incrementAmountForReceiver(receiver, amount);
+  await receiver.notifyNewPix(amount);
 }
 
 async function chargeAmountFromSender(sender: User, amount: number) {
@@ -35,5 +35,4 @@ async function chargeAmountFromSender(sender: User, amount: number) {
 async function incrementAmountForReceiver(receiver: User, amount: number) {
   receiver.balance = receiver.balance + amount;
   await receiver.save();
-  await receiver.notifyNewPix(amount);
 }
